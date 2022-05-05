@@ -18,5 +18,8 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="jackson-databind" level="project" />
+    <orderEntry type="library" name="jackson-core" level="project" />
+    <orderEntry type="library" name="jackson-annotations" level="project" />
   </component>
 </module>

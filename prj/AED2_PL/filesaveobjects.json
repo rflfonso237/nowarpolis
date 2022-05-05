@@ -1,0 +1,32 @@
+{
+  "Tag{id=1, localization=GeoInfo{information='coordinates', type='coordinates', x=0.0, y=0.0}, geoinfo=[]}" : {
+    "name" : "user1",
+    "tag" : {
+      "id" : 1,
+      "localization" : {
+        "information" : "coordinates",
+        "type" : "coordinates",
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "geoinfo" : [ ]
+    },
+    "profile" : "Admin",
+    "historyVisits" : { }
+  },
+  "Tag{id=2, localization=GeoInfo{information='coordinates', type='coordinates', x=0.0, y=0.0}, geoinfo=[]}" : {
+    "name" : "user2",
+    "tag" : {
+      "id" : 2,
+      "localization" : {
+        "information" : "coordinates",
+        "type" : "coordinates",
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "geoinfo" : [ ]
+    },
+    "profile" : "Admin",
+    "historyVisits" : { }
+  }
+}
