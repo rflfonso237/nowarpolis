@@ -126,4 +126,32 @@ public class MapDatabase {
         }
         return true;
     }
+
+    public ArrayList<POI> getAllPOI(){
+        ArrayList<POI> ret = new ArrayList<POI>();
+
+        this.all_obj.forEach((t, ms) -> {
+            if(ms instanceof POI){
+                ret.add((POI) ms);
+            }
+        });
+
+        return ret;
+    }
+
+    public ArrayList<User> getAllUsers(){
+        ArrayList<User> ret = new ArrayList<User>();
+
+        this.all_obj.forEach((t, ms) -> {
+            if(ms instanceof User){
+                ret.add((User) ms);
+            }
+        });
+
+        return ret;
+    }
+
+    public HashMap<String, HashMap<Tag, MapSymbol>> getAllMaps(){
+        return this.maps;
+    }
 }

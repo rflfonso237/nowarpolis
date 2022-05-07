@@ -2,7 +2,7 @@ package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 
 import java.util.Objects;
 
-public abstract class MapSymbol {
+public abstract class MapSymbol implements Cloneable{
 
     private String name;
     private Tag tag;
@@ -19,6 +19,11 @@ public abstract class MapSymbol {
 
     public Tag getTag() {
         return tag;
+    }
+
+    @Override
+    public Object clone()throws CloneNotSupportedException{
+        return (MapSymbol)super.clone();
     }
 
     @Override

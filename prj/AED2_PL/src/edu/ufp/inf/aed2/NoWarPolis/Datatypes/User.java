@@ -1,7 +1,6 @@
 package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 public class User extends MapSymbol{
 
@@ -12,6 +11,19 @@ public class User extends MapSymbol{
         super(name, t);
         this.profile = profile;
         this.historyVisits = new HashMap<DateDuration, POI>();
+    }
+    public User(User u, Date init, Date end){
+        super(u.getName(), u.getTag());
+        this.profile = u.getProfile();
+        this.historyVisits = new HashMap<DateDuration, POI>();
+
+        //Filter per dates
+        for(DateDuration dd: this.historyVisits.keySet()){
+            if(dd.isDateDurationBetween(init,end) == true){
+                this.historyVisits.put(dd,this.historyVisits.get(dd));
+            }
+        }
+
     }
 
     public void addVisit(POI p, float duration_sec){
@@ -26,6 +38,28 @@ public class User extends MapSymbol{
     public HashMap<DateDuration, POI> getHistoryVisits() {
         return historyVisits;
     }
+
+
+    public static ArrayList<User> getAllUsersWithVisitsWithinRange(ArrayList<User> all,Date init, Date end){
+        ArrayList<User> ret = new ArrayList<User>();
+        for(User u: all){
+            User filtered = new User(u,init,end);
+            if(filtered.getHistoryVisits().size() > 0){
+                ret.add(filtered);
+            }
+        }
+
+        Collections.sort(ret,sortUserBynVisits);
+
+        return ret;
+    }
+
+    private static Comparator<User>  sortUserBynVisits = new Comparator<User>() {
+        @Override
+        public int compare(User o1, User o2) {
+            return o1.historyVisits.size() - o2.historyVisits.size();
+        }
+    };
 
     @Override
     public boolean equals(Object o) {
@@ -48,4 +82,5 @@ public class User extends MapSymbol{
                 ", historyVisits=" + historyVisits +
                 '}';
     }
+
 }

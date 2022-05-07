@@ -2,6 +2,7 @@ package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 public class DateDuration
@@ -20,6 +21,11 @@ public class DateDuration
         this.durantion_s = duration_s;
     }
 
+    public boolean isDateDurationBetween(Date init, Date end){
+        Date date=new Date(this.t.getTime());
+
+        return date.compareTo(init) >= 0 && date.compareTo(end) <= 0;
+    }
 
     public Timestamp getT() {
         return t;
