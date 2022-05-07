@@ -2,9 +2,7 @@ package edu.ufp.inf.aed2.NoWarPolisTests;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MapDatabaseTest {
+class MapQueryTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
@@ -18,5 +16,4 @@ class MapDatabaseTest {
     public void test(){
 
     }
-
 }

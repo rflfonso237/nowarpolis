@@ -7,13 +7,11 @@ public class Node extends MapSymbol{
 
     private ArrayList<Way> inOnlyWays;
     private ArrayList<Way> outOnlyWays;
-    private ArrayList<Way> InOutWays;
 
     public Node(String name, Tag t){
         super(name,t);
         inOnlyWays = new ArrayList<Way>();
         outOnlyWays = new ArrayList<Way>();
-        InOutWays = new ArrayList<Way>();
     }
 
     public ArrayList<Way> getInOnlyWays() {
@@ -24,8 +22,21 @@ public class Node extends MapSymbol{
         return outOnlyWays;
     }
 
-    public ArrayList<Way> getInOutWays() {
-        return InOutWays;
+    public void setInWay(Way t){
+        if(this.inOnlyWays.contains(t) == false){
+            this.inOnlyWays.add(t);
+        }
+    }
+
+    public void setOutWay(Way t){
+        if(this.outOnlyWays.contains(t) == false){
+            this.outOnlyWays.add(t);
+        }
+    }
+
+    public void setInOutWay(Way t){
+        this.setInWay(t);
+        this.setOutWay(t);
     }
 
     @Override
@@ -34,12 +45,12 @@ public class Node extends MapSymbol{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Node node = (Node) o;
-        return Objects.equals(inOnlyWays, node.inOnlyWays) && Objects.equals(outOnlyWays, node.outOnlyWays) && Objects.equals(InOutWays, node.InOutWays);
+        return Objects.equals(inOnlyWays, node.inOnlyWays) && Objects.equals(outOnlyWays, node.outOnlyWays);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), inOnlyWays, outOnlyWays, InOutWays);
+        return Objects.hash(super.hashCode(), inOnlyWays, outOnlyWays);
     }
 
     @Override
@@ -47,7 +58,6 @@ public class Node extends MapSymbol{
         return "Node{" +
                 "inOnlyWays=" + inOnlyWays +
                 ", outOnlyWays=" + outOnlyWays +
-                ", InOutWays=" + InOutWays +
                 '}';
     }
 }
