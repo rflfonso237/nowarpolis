@@ -4,8 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.ufp.inf.aed2.NoWarPolis.Datatypes.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -102,10 +101,12 @@ public class MapDatabase {
     public boolean save(String filePath){
 
         try{
-            ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this.maps);
+            objectOut.writeObject(this.all_obj);
+            objectOut.close();
 
-            objectMapper.writeValue(new FileOutputStream(filePath+"maps.json"), this.maps);
-            objectMapper.writeValue(new FileOutputStream(filePath+"objects.json"), this.all_obj);
         }catch(Exception e){
             e.printStackTrace();
             return false;
@@ -116,10 +117,11 @@ public class MapDatabase {
     public boolean load(String filePath){
 
         try{
-            ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);;
-
-            objectMapper.readValue(new File(filePath+"maps.json"), this.maps.getClass());
-            objectMapper.readValue(new File(filePath+"objects.json"), this.all_obj.getClass());
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            this.maps = (HashMap<String, HashMap<Tag, MapSymbol>>) objectIn.readObject();
+            this.all_obj = (HashMap<Tag, MapSymbol>) objectIn.readObject();
+            objectIn.close();
         }catch(Exception e){
             e.printStackTrace();
             return false;

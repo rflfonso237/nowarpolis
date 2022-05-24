@@ -49,15 +49,5 @@ class GeoInfoTest {
                 true);
     }
 
-    @Test
-    public void test_02_json() throws JsonProcessingException {
-        ObjectMapper m = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-        String output = m.writeValueAsString(d1);
-        assertNotNull(output);
-        System.out.println(d1.getClass().toString() + " -> " + output);
 
-        GeoInfo cop = m.readValue(output,GeoInfo.class);
-
-        assertEquals(cop.equals(d1), true);
-    }
 }

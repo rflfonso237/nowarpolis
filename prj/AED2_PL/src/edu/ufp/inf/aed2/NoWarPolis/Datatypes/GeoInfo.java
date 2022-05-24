@@ -3,14 +3,13 @@ package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 import java.awt.geom.Point2D;
 import java.util.Objects;
 
-public class GeoInfo extends Point2D {
+public class GeoInfo extends Point2D implements Cloneable{
 
     private String information = "coordinates";
     private String type = "coordinates";
     private double x = 0;
     private double y = 0;
 
-    public GeoInfo(){}
     public GeoInfo(String information, String type){
         this.information = information;
         this.type =  type;
