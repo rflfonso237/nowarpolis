@@ -2,13 +2,14 @@ package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 
 import java.util.Objects;
 
-public class GraphWeight {
+public class GraphWeight implements Cloneable{
 
     private String name;
     private float value;
 
     public GraphWeight(String name, float value){
-
+        this.name = name;
+        this.value = value;
     }
 
     public String getName() {
@@ -38,5 +39,10 @@ public class GraphWeight {
                 "name='" + name + '\'' +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public Object clone()throws CloneNotSupportedException{
+        return (GraphWeight)super.clone();
     }
 }

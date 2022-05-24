@@ -102,7 +102,7 @@ public class MapDatabase {
     public boolean save(String filePath){
 
         try{
-            ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);;
+            ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
             objectMapper.writeValue(new FileOutputStream(filePath+"maps.json"), this.maps);
             objectMapper.writeValue(new FileOutputStream(filePath+"objects.json"), this.all_obj);

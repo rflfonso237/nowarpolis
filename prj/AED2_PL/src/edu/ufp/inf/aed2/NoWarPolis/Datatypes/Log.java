@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Objects;
 
-public class Log {
+public class Log implements Cloneable{
 
     private Timestamp d;
     private String log;
@@ -41,5 +41,10 @@ public class Log {
                 "d=" + d +
                 ", log='" + log + '\'' +
                 '}';
+    }
+
+    @Override
+    public Object clone()throws CloneNotSupportedException{
+        return (Log)super.clone();
     }
 }

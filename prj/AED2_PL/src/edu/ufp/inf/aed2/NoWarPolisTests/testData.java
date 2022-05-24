@@ -3,6 +3,7 @@ package edu.ufp.inf.aed2.NoWarPolisTests;
 import edu.ufp.inf.aed2.NoWarPolis.Datatypes.Node;
 import edu.ufp.inf.aed2.NoWarPolis.Datatypes.Tag;
 import edu.ufp.inf.aed2.NoWarPolis.Datatypes.User;
+import edu.ufp.inf.aed2.NoWarPolis.Datatypes.Way;
 
 public class testData {
 
@@ -26,6 +27,13 @@ public class testData {
         return us;
     }
 
+    private Way[] Way_set1(){
+        Way us[] = {
+                new Way("way1",newTag()),
+                new Way("way2",newTag()),
+        };
+        return us;
+    }
     private Node[] Node_set1(){
         Node us[] = {
                 new Node("node1",newTag()),
