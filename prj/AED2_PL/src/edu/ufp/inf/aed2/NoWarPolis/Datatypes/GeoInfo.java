@@ -10,6 +10,7 @@ public class GeoInfo extends Point2D {
     private double x = 0;
     private double y = 0;
 
+    public GeoInfo(){}
     public GeoInfo(String information, String type){
         this.information = information;
         this.type =  type;

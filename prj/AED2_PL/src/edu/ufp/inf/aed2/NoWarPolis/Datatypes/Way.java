@@ -11,6 +11,10 @@ public class Way extends MapSymbol{
     private Node nodeEnd = null;
     private boolean oneway = false;
 
+    public Way(){
+        super(null,null);
+    }
+
     public Way(String name, Tag t){
         super(name, t);
         this.weights = new ArrayList<GraphWeight>();

@@ -1,6 +1,7 @@
 package edu.ufp.inf.aed2.NoWarPolisTests.Datatypes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import edu.ufp.inf.aed2.NoWarPolis.Datatypes.GraphWeight;
@@ -41,8 +42,13 @@ class LogTest {
     @Test
     public void test_02_json() throws JsonProcessingException {
         ObjectMapper m = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        m.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
         String output = m.writeValueAsString(d1);
         assertNotNull(output);
         System.out.println(d1.getClass().toString() + " -> " + output);
+
+        Log cop = m.readValue(output,Log.class);
+
+        assertEquals(cop.equals(d1), true);
     }
 }

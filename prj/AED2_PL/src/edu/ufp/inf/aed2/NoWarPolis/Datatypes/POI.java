@@ -8,7 +8,7 @@ public class POI extends MapSymbol{
 
     private String type;
     private HashMap<Timestamp, Log> logs;
-    private ArrayList<Vehicle> supportedVehicles = null;
+    private ArrayList<Vehicle> supportedVehicles = new ArrayList<Vehicle>();
     private MapSymbol location;
     private HashMap<User, ArrayList<Timestamp>> visitedUsers;
 

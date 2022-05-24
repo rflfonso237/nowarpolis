@@ -11,6 +11,9 @@ public class Tag {
     private GeoInfo localization;
     private ArrayList<GeoInfo> geoinfo;
 
+    public Tag(){
+
+    }
     public Tag(long id, GeoInfo localization, ArrayList<GeoInfo> geoinfo){
         this.id = id;
         this.localization = localization;

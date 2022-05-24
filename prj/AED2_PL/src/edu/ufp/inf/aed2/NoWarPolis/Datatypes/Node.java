@@ -1,30 +1,60 @@
 package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Node extends MapSymbol{
 
-    private ArrayList<Way> inOnlyWays;
+    private ArrayList<Way> inWays;
     private ArrayList<Way> outOnlyWays;
 
     public Node(String name, Tag t){
         super(name,t);
-        inOnlyWays = new ArrayList<Way>();
+        inWays = new ArrayList<Way>();
         outOnlyWays = new ArrayList<Way>();
     }
 
+    public Node(){
+        super("",null);
+    }
+
     public ArrayList<Way> getInOnlyWays() {
-        return inOnlyWays;
+        ArrayList<Way> ret = new ArrayList<Way>();
+        for(Way w : this.inWays){
+            if(this.outOnlyWays.contains(w) == false){
+                ret.add(w);
+            }
+        }
+        return ret;
     }
 
     public ArrayList<Way> getOutOnlyWays() {
-        return outOnlyWays;
+        ArrayList<Way> ret = new ArrayList<Way>();
+        for(Way w : this.outOnlyWays){
+            if(this.inWays.contains(w) == false){
+                ret.add(w);
+            }
+        }
+        return ret;
+    }
+
+    public ArrayList<Way> getInOutWays(){
+        ArrayList<Way> ret = new ArrayList<Way>();
+        for(Way w : this.inWays){
+            if(this.outOnlyWays.contains(w) == true){
+                ret.add(w);
+            }
+        }
+        return ret;
     }
 
     public void setInWay(Way t){
-        if(this.inOnlyWays.contains(t) == false){
-            this.inOnlyWays.add(t);
+        if(this.inWays.contains(t) == false){
+            this.inWays.add(t);
         }
     }
 
@@ -45,18 +75,18 @@ public class Node extends MapSymbol{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Node node = (Node) o;
-        return Objects.equals(inOnlyWays, node.inOnlyWays) && Objects.equals(outOnlyWays, node.outOnlyWays);
+        return Objects.equals(inWays, node.inWays) && Objects.equals(outOnlyWays, node.outOnlyWays);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), inOnlyWays, outOnlyWays);
+        return Objects.hash(super.hashCode(), inWays, outOnlyWays);
     }
 
     @Override
     public String toString() {
         return "Node{" +
-                "inOnlyWays=" + inOnlyWays +
+                "inOnlyWays=" + inWays +
                 ", outOnlyWays=" + outOnlyWays +
                 '}';
     }

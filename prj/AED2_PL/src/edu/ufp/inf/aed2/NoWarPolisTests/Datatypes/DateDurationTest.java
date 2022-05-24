@@ -43,5 +43,9 @@ class DateDurationTest {
         String output = m.writeValueAsString(d1);
         assertNotNull(output);
         System.out.println(d1.getClass().toString() + " -> " + output);
+
+        DateDuration cop = m.readValue(output,DateDuration.class);
+
+        assertEquals(cop.equals(d1), true);
     }
 }

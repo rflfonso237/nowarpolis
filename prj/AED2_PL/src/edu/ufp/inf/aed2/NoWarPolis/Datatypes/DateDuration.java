@@ -12,13 +12,16 @@ public class DateDuration
     private Timestamp t;
     private float durantion_s;
 
+    public DateDuration(){
+
+    }
     public DateDuration(Timestamp t, float duration_s){
         this.t = t;
         this.durantion_s = duration_s;
     }
 
     public DateDuration(float duration_s){
-        this.t = Timestamp.from(Instant.now());
+        this.t = Timestamp.from(Instant.now()); this.t.setNanos(0);
         this.durantion_s = duration_s;
     }
 

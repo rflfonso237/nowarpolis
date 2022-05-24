@@ -7,6 +7,8 @@ public class GraphWeight implements Cloneable{
     private String name;
     private float value;
 
+    public GraphWeight(){}
+
     public GraphWeight(String name, float value){
         this.name = name;
         this.value = value;

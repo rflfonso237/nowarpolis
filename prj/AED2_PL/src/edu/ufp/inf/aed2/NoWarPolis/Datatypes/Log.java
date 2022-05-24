@@ -1,5 +1,8 @@
 package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Objects;
@@ -7,10 +10,12 @@ import java.util.Objects;
 public class Log implements Cloneable{
 
     private Timestamp d;
+
     private String log;
 
+    public Log(){}
     public Log(String log){
-        this.d = Timestamp.from(Instant.now());
+        this.d = Timestamp.from(Instant.now()); this.d.setNanos(0);
         this.log = log;
     }
 

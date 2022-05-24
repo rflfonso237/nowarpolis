@@ -3,6 +3,8 @@ package edu.ufp.inf.aed2.NoWarPolisTests.Datatypes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import edu.princeton.cs.algs4.Graph;
+import edu.ufp.inf.aed2.NoWarPolis.Datatypes.GeoInfo;
 import edu.ufp.inf.aed2.NoWarPolis.Datatypes.GraphWeight;
 import org.junit.jupiter.api.Test;
 
@@ -51,5 +53,9 @@ class GraphWeightTest {
         String output = m.writeValueAsString(d1);
         assertNotNull(output);
         System.out.println(d1.getClass().toString() + " -> " + output);
+
+        GraphWeight cop = m.readValue(output,GraphWeight.class);
+
+        assertEquals(cop.equals(d1), true);
     }
 }

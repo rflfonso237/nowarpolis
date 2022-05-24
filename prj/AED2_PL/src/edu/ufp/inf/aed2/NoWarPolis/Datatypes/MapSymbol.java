@@ -1,8 +1,13 @@
 package edu.ufp.inf.aed2.NoWarPolis.Datatypes;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers;
+
+import java.io.IOException;
 import java.util.Objects;
 
-public abstract class MapSymbol implements Cloneable{
+public abstract class MapSymbol extends StdKeySerializers.StringKeySerializer implements Cloneable{
 
     private String name;
     private Tag tag;
