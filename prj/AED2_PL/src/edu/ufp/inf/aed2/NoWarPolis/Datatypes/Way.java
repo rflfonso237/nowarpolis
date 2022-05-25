@@ -31,6 +31,16 @@ public class Way extends MapSymbol{
         return weights;
     }
 
+    public float getWeight() {
+        float w = 0;
+
+        for(GraphWeight g: this.getWeights()){
+            w+=g.getValue();
+        }
+
+        return w;
+    }
+
     public Node getNodeStart() {
         return nodeStart;
     }

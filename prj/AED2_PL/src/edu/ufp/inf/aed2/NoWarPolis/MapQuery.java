@@ -1,13 +1,10 @@
 package edu.ufp.inf.aed2.NoWarPolis;
 
-import edu.ufp.inf.aed2.NoWarPolis.Datatypes.MapSymbol;
-import edu.ufp.inf.aed2.NoWarPolis.Datatypes.POI;
-import edu.ufp.inf.aed2.NoWarPolis.Datatypes.Tag;
-import edu.ufp.inf.aed2.NoWarPolis.Datatypes.User;
+import edu.princeton.cs.algs4.*;
+import edu.ufp.inf.aed2.NoWarPolis.Datatypes.*;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MapQuery {
@@ -108,4 +105,34 @@ public class MapQuery {
 
         return ret;
     }
+
+    public ArrayList<Map.Entry<Node,Float>> getShortedPath(Node s, Node end){
+        ArrayList<Map.Entry<Node,Float>> path = new ArrayList<Map.Entry<Node,Float>>();
+
+        EdgeWeightedGraph g = this.md.mapToGraph();
+        DijkstraUndirectedSP sp = new DijkstraUndirectedSP(
+                g, this.md.nodeToInt(s));
+
+
+        if(sp.hasPathTo(this.md.nodeToInt(end)) == true){
+
+            for(Edge e: sp.pathTo(this.md.nodeToInt(end))){
+                Float weight = (float) e.weight();
+                path.add(new AbstractMap.SimpleEntry<Node,Float>(this.md.intToNode(e.either()), weight));
+            }
+
+            return path;
+        }
+
+        return null;
+    }
+
+    public float getWeightPath(ArrayList<Map.Entry<Node,Float>> m){
+        float total = 0;
+        for (Map.Entry<Node, Float> entry : m) {
+            total+=entry.getValue();
+        }
+        return total;
+    }
+
 }

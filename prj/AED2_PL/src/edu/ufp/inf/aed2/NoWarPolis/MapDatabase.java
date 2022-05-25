@@ -2,6 +2,8 @@ package edu.ufp.inf.aed2.NoWarPolis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import edu.princeton.cs.algs4.Edge;
+import edu.princeton.cs.algs4.EdgeWeightedGraph;
 import edu.ufp.inf.aed2.NoWarPolis.Datatypes.*;
 
 import java.io.*;
@@ -47,6 +49,54 @@ public class MapDatabase {
         insert_obj(s);
 
         return true;
+    }
+
+    public ArrayList<Node> getAllNodes(){
+        ArrayList<Node> ret = new ArrayList<Node>();
+
+        for (Map.Entry<Tag, MapSymbol> entry : this.all_obj.entrySet()) {
+            Tag t = entry.getKey();
+            if(entry instanceof Node){
+                ret.add((Node) entry);
+            }
+        }
+
+        return ret;
+    }
+    public ArrayList<Way> getAllWays(){
+
+        ArrayList<Way> ret = new ArrayList<Way>();
+
+        for (Map.Entry<Tag, MapSymbol> entry : this.all_obj.entrySet()) {
+            Tag t = entry.getKey();
+            if(entry instanceof Way){
+                ret.add((Way) entry);
+            }
+        }
+
+        return ret;
+    }
+
+    public int nodeToInt(Node n){
+        int i = 0;
+        for(Node k: this.getAllNodes()){
+            if(k.equals(n) == true){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
+    public Node intToNode(int n){
+        int i = 0;
+        for(Node k: this.getAllNodes()){
+            if(i == n){
+                return k;
+            }
+            i++;
+        }
+        return null;
     }
 
     private boolean insert_obj(MapSymbol p){
@@ -155,5 +205,26 @@ public class MapDatabase {
 
     public HashMap<String, HashMap<Tag, MapSymbol>> getAllMaps(){
         return this.maps;
+    }
+
+    public EdgeWeightedGraph mapToGraph(){
+        ArrayList<Node> nds = this.getAllNodes();
+        ArrayList<Way> ways = this.getAllWays();
+
+        EdgeWeightedGraph ret = new EdgeWeightedGraph(nds.size());
+
+        for(Way w: ways){
+            ret.addEdge(
+                    new Edge(
+                            this.nodeToInt(w.getNodeStart()),
+                            this.nodeToInt(w.getNodeEnd()),
+                            w.getWeight()
+                    )
+            );
+
+        }
+
+        return ret;
+
     }
 }
